@@ -3,7 +3,7 @@ const USStatesService = {
     return knex.select('*').from('usstates')
   },
 
-  insertComment(knex, newUSStates) {
+  insertUSState(knex, newUSStates) {
     return knex
       .insert(newUSStates)
       .into('usstates')
