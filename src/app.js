@@ -7,7 +7,6 @@ const logger = require('./logger')
 const { API_TOKEN } = require('./config')
 const { NODE_ENV } = require('./config')
 const reportsRouter = require('./reports/reports-router')
-const usstatesRouter = require('./usstates/usstates-router')
 const app = express()
 
 const morganOption = (NODE_ENV === 'production')
@@ -31,7 +30,6 @@ app.use(function validateBearerToken(req, res, next) {
 })
 
 app.use('/api/reports', reportsRouter)
-app.use('/api/usstates', usstatesRouter)
 app.use(express.json())
 
 
@@ -50,5 +48,4 @@ app.use(function errorHandler(error, req, res, next) {
 })
 
 app.use(reportsRouter)
-app.use(usstatesRouter)
 module.exports = app

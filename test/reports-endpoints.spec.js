@@ -3,7 +3,6 @@ const knex = require('knex')
 const app = require('../src/app')
 const fixtures = require('./reports.fixtures')
 const { makeReportsArray } = require('./reports.fixtures')
-const { makeUSStatesArray } = require('./usstates.fixtures')
 const supertest = require('supertest');
 
 
@@ -34,17 +33,11 @@ describe('Reports Endpoints', function() {
     })
     context('Given there are reports in the database', () => {
       const testReports = makeReportsArray();
-      const testUSStates = makeUSStatesArray();
 
       beforeEach('insert reports', () => {
         return db
-          .into('usstates')
-          .insert(testUSStates)
-          .then(() => {
-            return db
-              .into('reports')
-              .insert(testReports)
-          })
+          .into('reports')
+          .insert(testReports)
       })
       it(`responds with 200 and all of the reports`, () => {
         return supertest(app)
