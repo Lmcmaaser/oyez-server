@@ -1,6 +1,10 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "name": "oyez-server",
+=======
+  "name": "express-boilerplate",
+>>>>>>> parent of 1c2d82b... debugging deploy
 =======
   "name": "express-boilerplate",
 >>>>>>> parent of 1c2d82b... debugging deploy
