@@ -33,7 +33,7 @@ app.use(function validateBearerToken(req, res, next) {
 })
 
 app.use('/api/reports', reportsRouter)
-//app.use(express.json())
+app.use(express.json())
 
 
 app.get('/', (req, res) => {
@@ -50,5 +50,5 @@ app.use(function errorHandler(error, req, res, next) {
   }
 })
 
-//app.use(reportsRouter)
+app.use(reportsRouter)
 module.exports = app
