@@ -1,5 +1,5 @@
 {
-  "name": "OYEZ-SERVER",
+  "name": "pyez-server",
   "version": "1.0.0",
   "engines": {
     "node": "12.13.x"
