@@ -9,11 +9,14 @@ const { NODE_ENV } = require('./config')
 const reportsRouter = require('./reports/reports-router')
 const app = express()
 
-const morganOption = (NODE_ENV === 'production')
-  ? 'tiny'
-  : 'common';
+// const morganOption = (NODE_ENV === 'production')
+//   ? 'tiny'
+//   : 'common';
+//
+// app.use(morgan(morganOption))
 
-app.use(morgan(morganOption))
+const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
+app.use(morgan(morganSetting))
 app.use(cors())
 app.use(helmet())
 
@@ -47,5 +50,5 @@ app.use(function errorHandler(error, req, res, next) {
   }
 })
 
-app.use(reportsRouter)
+//app.use(reportsRouter)
 module.exports = app
