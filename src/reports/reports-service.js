@@ -21,6 +21,12 @@ const ReportsService = {
       .first()
   },
 
+  deleteReport(knex, id) {
+    return knex('reports')
+      .where({ id })
+      .delete()
+  },
+
 }
 
 module.exports = ReportsService

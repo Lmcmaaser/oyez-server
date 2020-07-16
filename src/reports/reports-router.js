@@ -78,6 +78,17 @@ reportsRouter
   .get((req, res, next) => {
     res.json(serializeReport(res.report))
   })
+  .delete((req, res, next) => {
+    ReportsService.deleteReport(
+      req.app.get('db'),
+      req.params.id
+    )
+      .then(numRowsAffected => {
+        logger.info(`Report with id ${req.params.id} deleted.`)
+        res.status(204).end()
+      })
+      .catch(next)
+  })
 
 
 module.exports = reportsRouter
