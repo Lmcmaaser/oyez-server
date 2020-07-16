@@ -50,5 +50,5 @@ app.use(function errorHandler(error, req, res, next) {
   }
 })
 
-//app.use(reportsRouter)
+app.use(reportsRouter)
 module.exports = app
