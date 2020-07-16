@@ -1,5 +1,5 @@
 {
-  "name": "findapet-server",
+  "name": "oyez-server",
   "version": "1.0.0",
   "engines": {
     "node": "12.13.x"
