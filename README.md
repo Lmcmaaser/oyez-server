@@ -1,26 +1,65 @@
-# Express Boilerplate!
+# **Oyez!**
 
-This is a boilerplate project used for starting new projects!
+https://oyez-client.vercel.app/
 
-## Set up
+## Description:
+A full-stack React app that allows individuals to self-report cases of COVID-19 and view recorded instances by geographical location. App will be limited to recording data from people who live in the United States (future versions of the app could expand to include other countries).
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## Technology used:
+This full-stack app uses Javascript, React, HTML/JSX, CSS, Node, Express, and PostgreSQL. It is deployed on Vercel and Heroku.
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+## API Documentation:
+The backend repository of the Oyez! can be found at: https://github.com/Lmcmaaser/oyez-server.
 
-## Scripts
+### Endpoints:
+* Get all reports: `GET '/'`
+  - returns an array of pet objects
+  - ex:
+  ```
+  [
+    {
+      "id": 1,
+      "code": 85308,
+      "diagnosis_date": "2020-07-08T00:00:00.000Z",
+      "household": 1,
+      "diagnosis_type": "doctor",
+      "stateid": 3
+    },
+    {    
+      "id": 3,
+      "code": 32201,
+      "diagnosis_date": "2020-07-08T00:00:00.000Z",
+      "household": 3,
+      "diagnosis_type": "test",
+      "stateid": 10
+    }  
+  ]
+  ```
+* Get a report by ID: `GET '/:id'`
+  - id: ID of the report
+  - returns the report object
+  - ex.
+  ```
+  [
+    {
+      "id": 3,
+      "code": 32201,
+      "diagnosis_date": "2020-07-08T00:00:00.000Z",
+      "household": 3,
+      "diagnosis_type": "test",
+      "stateid": 10
+    }
+  ]
+  ```
+* Post a report: `POST '/'`
+  - submits the new report object to the db
 
-Start the application `npm start`
+* Delete a report by ID: `DELETE '/:id'`
+  - id: ID of the pet
+  - deletes the specified report object from the db and returns HTTP status 204 (No Content)
 
-Start nodemon for the application `npm run dev`
-
-Run the tests `npm test`
-
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+## Screenshots
+![Screenshot of Oyez! Home Page](screenshot/home-page.png)
+![Screenshot of Oyez! Report Page](screenshot/report-page.png)
+![Screenshot of Oyez! Zip Code Data displayed in a graph.](screenshot/zipcode-page.png)
+![Screenshot of Oyez! in mobile page view](screenshot/search-page-mobile.png)
