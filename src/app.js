@@ -1,13 +1,13 @@
-require('dotenv').config()
-const express = require('express')
-const morgan = require('morgan')
-const cors = require('cors')
-const helmet = require('helmet')
-const logger = require('./logger')
-const { API_TOKEN } = require('./config')
-const { NODE_ENV } = require('./config')
-const reportsRouter = require('./reports/reports-router')
-const app = express()
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const helmet = require('helmet');
+const logger = require('./logger');
+const { API_TOKEN } = require('./config');
+const { NODE_ENV } = require('./config');
+const reportsRouter = require('./reports/reports-router');
+const app = express();
 
 // const morganOption = (NODE_ENV === 'production')
 //   ? 'tiny'
@@ -16,8 +16,8 @@ const app = express()
 // app.use(morgan(morganOption))
 
 const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
-app.use(morgan(morganSetting))
-app.use(cors())
+app.use(morgan(morganSetting));
+app.use(cors());
 //app.options('*', cors())
 
 // const morganOption = (NODE_ENV === 'production')
@@ -25,22 +25,22 @@ app.use(cors())
 //   : 'common';
 //
 // app.use(morgan(morganOption))
-app.use(helmet())
+app.use(helmet());
 
 
 app.use(function validateBearerToken(req, res, next) {
-  const apiToken = process.env.API_TOKEN
-  const authToken = req.get('Authorization')
+  const apiToken = process.env.API_TOKEN;
+  const authToken = req.get('Authorization');
 
   if (!authToken || authToken.split(' ')[1] !== apiToken) {
     logger.error(`Unauthorized request to path: ${req.path}`);
-    return res.status(401).json({ error: 'Unauthorized request' })
+    return res.status(401).json({ error: 'Unauthorized request' });
   }
   next()
 })
 
-app.use('/api/reports', reportsRouter)
-app.use(express.json())
+app.use('/api/reports', reportsRouter);
+app.use(express.json());
 
 
 app.get('/', (req, res) => {
@@ -54,8 +54,8 @@ app.use(function errorHandler(error, req, res, next) {
   } else {
     console.error(error);
     response = { message: error.message, error}
-  }
+  };
 })
 
 //app.use(reportsRouter)
-module.exports = app
+module.exports = app;

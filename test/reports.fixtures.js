@@ -31,4 +31,4 @@ function makeReportsArray() {
 
 module.exports = {
   makeReportsArray,
-}
+};

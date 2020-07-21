@@ -10,7 +10,7 @@ const ReportsService = {
       .returning('*')
       .then(rows => {
         return rows[0]
-      })
+      });
   },
 
   getById(knex, id) {
@@ -29,4 +29,4 @@ const ReportsService = {
 
 }
 
-module.exports = ReportsService
+module.exports = ReportsService;

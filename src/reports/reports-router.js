@@ -1,11 +1,11 @@
-const path = require('path')
-const express = require('express')
-const xss = require('xss')
-const ReportsService = require('./reports-service')
+const path = require('path');
+const express = require('express');
+const xss = require('xss');
+const ReportsService = require('./reports-service');
 
-const reportsRouter = express.Router()
-const jsonParser = express.json()
-const logger = require('../logger')
+const reportsRouter = express.Router();
+const jsonParser = express.json();
+const logger = require('../logger');
 
 const serializeReport = report => ({
   id: report.id,
@@ -14,7 +14,7 @@ const serializeReport = report => ({
   household: report.household,
   diagnosis_type: report.diagnosis_type,
   stateid: report.stateid,
-})
+});
 
 reportsRouter
   .route('/')
@@ -27,14 +27,14 @@ reportsRouter
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
-    const { code, diagnosis_date, household, diagnosis_type, stateid} = req.body
-    const newReport = { code, diagnosis_date, household, diagnosis_type, stateid }
+    const { code, diagnosis_date, household, diagnosis_type, stateid} = req.body;
+    const newReport = { code, diagnosis_date, household, diagnosis_type, stateid };
 
     for (const [key, value] of Object.entries(newReport)) {
       if (value == null) {
         return res.status(400).json({
           error: { message: `Missing '${key}' in request body` }
-        })
+        });
       }
     }
 
@@ -68,7 +68,7 @@ reportsRouter
         if (!report) {
           return res.status(404).json({
             error: { message: `Report doesn't exist` }
-          })
+          });
         }
         res.report = report
         next()
@@ -91,4 +91,4 @@ reportsRouter
   })
 
 
-module.exports = reportsRouter
+module.exports = reportsRouter;
